@@ -50,13 +50,15 @@ export const FinancialLedgerView: React.FC<FinancialLedgerViewProps> = ({
   const [entrySeason, setEntrySeason] = useState<any>('Kharif 2026');
 
   // Totals
-  const totalIncome = entries
-    .filter((e) => e.type === 'income')
-    .reduce((acc, curr) => acc + curr.amount, 0);
+  const totalIncome = (entries || [])
+  .filter(e => e.type === 'income')
+  .reduce((acc, curr) => acc + curr.amount, 0);
 
-  const totalExpense = entries
-    .filter((e) => e.type === 'expense')
-    .reduce((acc, curr) => acc + curr.amount, 0);
+const totalExpense = (entries || [])
+  .filter(e => e.type === 'expense')
+  .reduce((acc, curr) => acc + curr.amount, 0);
+  
+  
 
   const netFarmProfit = totalIncome - totalExpense;
 
@@ -244,7 +246,7 @@ export const FinancialLedgerView: React.FC<FinancialLedgerViewProps> = ({
             </h3>
 
             <div className="space-y-3">
-              {loanProducts.map((prod) => {
+              {(loanProducts ||).map((prod) => {
                 const isSelected = selectedLoanForCalculator.id === prod.id;
 
                 return (
