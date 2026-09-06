@@ -643,14 +643,21 @@ export const BLIGHT_LEAF_SAMPLES: DiseaseSample[] = [
 
 export const INITIAL_COLD_STORAGE = COLD_STORAGE_FACILITIES;
 export const INITIAL_REEFER_TRUCKS = REEFER_TRUCKS;
-export const INITIAL_FINANCIAL_ENTRIES = INITIAL_LEDGER_ENTRIES;
+export const INITIAL_FINANCIAL_ENTRIES = INITIAL_FINANCIAL_ENTRIES;
 export const INITIAL_LOAN_PRODUCTS = LOAN_PRODUCTS;
+
 export const INITIAL_ESCROW_DEALS = [
-  INITIAL_PRODUCE_LISTINGS[1].activeEscrow!,
+  INITIAL_PRODUCE_LISTINGS[0]?.activeEscrow || {
+    id: 'escrow-1',
+    produceId: 'prod-101',
+    buyerName: 'Organic Food Coop Bangalore',
+    buyerType: 'Consumer Cooperative',
+    amountEscrowed: 361250,
+    status: 'LOCKED_IN_ESCROW',
+    depositTimestamp: '2026-09-04T10:30:00Z',
+    inspectionDeadline: '2026-09-07T18:00:00Z',
+    qualityVerified: true
+  }
 ];
 
-export const SAMPLE_DISEASE_IMAGES = BLIGHT_LEAF_SAMPLES.map((sample) => ({
-  name: `${sample.cropName} - ${sample.diseaseTitle.split('(')[0].trim()}`,
-  imageUrl: sample.sampleThumbnail,
-  diagnostic: sample.diagnostic,
-}));
+
