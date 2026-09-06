@@ -1,0 +1,6 @@
+{
+  "name": "Annadata AI",
+  "description": "A rural economic operating system connecting smallholder farmers to buyers, cold storage facilities, crop advisory, and rural credit with multilingual AI assistance.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
