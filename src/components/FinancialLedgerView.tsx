@@ -246,7 +246,7 @@ const totalExpense = (entries || [])
             </h3>
 
             <div className="space-y-3">
-              {(loanProducts ||).map((prod) => {
+              {loanProducts?.map((prod) => {
                 const isSelected = selectedLoanForCalculator.id === prod.id;
 
                 return (
