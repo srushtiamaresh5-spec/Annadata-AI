@@ -659,3 +659,9 @@ export const INITIAL_ESCROW_DEALS = [
     qualityVerified: true
   }
 ];
+
+export const SAMPLE_DISEASE_IMAGES = (BLIGHT_LEAF_SAMPLES || []).map((sample) => ({
+  name: `${sample.cropName} - ${sample.diseaseTitle.split('(')[0].trim()}`,
+  imageUrl: sample.sampleThumbnail,
+  diagnostic: sample.diagnostic,
+}));
