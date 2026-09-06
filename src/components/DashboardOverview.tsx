@@ -45,10 +45,12 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({
   const t = TRANSLATIONS[language];
 
   // Calculate totals
-  const totalListedQuintals = listings.reduce((acc, curr) => acc + curr.quantityQuintals, 0);
-  const totalMarketVal = listings.reduce((acc, curr) => acc + (curr.quantityQuintals * curr.pricePerQuintal), 0);
-  const totalEscrowLocked = activeEscrows.reduce((acc, curr) => acc + curr.totalAmount, 0);
-  const totalAvailableColdCapacity = coldFacilities.reduce((acc, curr) => acc + curr.availableCapacityMT, 0);
+  // Calculate totals safely
+const totalListedQuintals = (listings || []).reduce((acc, curr) => acc + curr.quantityQuintals, 0);
+const totalMarketVal = (listings || []).reduce((acc, curr) => acc + (curr.quantityQuintals * curr.pricePerQuintal), 0);
+const totalEscrowLocked = (activeEscrows || []).reduce((acc, curr) => acc + curr.amountEscrowed, 0);
+const totalAvailableColdCapacity = (coldFacilities || []).reduce((acc, curr) => acc + curr.availableCapacityQuintals, 0);
+  
 
   return (
     <div className="space-y-6">
