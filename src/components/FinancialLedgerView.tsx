@@ -246,58 +246,56 @@ const totalExpense = (entries || [])
             </h3>
 
             <div className="space-y-3">
-              {loanProducts?.map((prod) => {
-                const isSelected = selectedLoanForCalculator.id === prod.id;
+  {loanProducts?.map((prod) => {
+    const isSelected = selectedLoanForCalculator?.id === prod.id;
 
-                return (
-                  <div
-                    key={prod.id}
-                    onClick={() => {
-                      setSelectedLoanForCalculator(prod);
-                      setSanctionLetter(null);
-                    }}
-                    className={`p-4 rounded-2xl border transition-all cursor-pointer ${
-                      isSelected
-                        ? 'border-emerald-600 bg-emerald-50/50 shadow-xs ring-1 ring-emerald-500/20'
-                        : 'border-stone-200 bg-white hover:border-stone-300'
-                    }`}
-                  >
-                    <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <h4 className="font-bold text-stone-900 text-sm">
-                            {prod.name}
-                          </h4>
-                          <span className="px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-100 text-emerald-800">
-                            {prod.eligibilityStatus}
-                          </span>
-                        </div>
-                        <p className="text-xs text-stone-500 mt-0.5">
-                          {prod.institution} &bull; {prod.approvalSpeed}
-                        </p>
-                      </div>
-
-                      <div className="text-right">
-                        <span className="text-xs text-stone-500 block">Annual Interest</span>
-                        <span className="text-lg font-black text-emerald-900 font-serif">
-                          {prod.interestRateAnnual}% p.a.
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-wrap gap-2 pt-2 border-t border-stone-100 text-[11px] text-stone-600">
-                      {prod.features.map((feat) => (
-                        <span key={feat} className="flex items-center gap-1 bg-white px-2 py-0.5 rounded border border-stone-200">
-                          <CheckCircle2 className="w-3 h-3 text-emerald-600" />
-                          {feat}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                );
-              })}
+    return (
+      <div
+        key={prod.id}
+        onClick={() => {
+          setSelectedLoanForCalculator(prod);
+          setSanctionLetter(null);
+        }}
+        className={`p-4 rounded-2xl border transition-all cursor-pointer ${
+          isSelected
+            ? 'border-emerald-600 bg-emerald-50/50 shadow-xs ring-1 ring-emerald-600'
+            : 'border-stone-200 bg-white hover:border-stone-300'
+        }`}
+      >
+        <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+          <div>
+            <div className="flex items-center gap-2">
+              <h4 className="font-bold text-stone-900 text-sm">
+                {prod.name}
+              </h4>
+              <span className="px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-100 text-emerald-800">
+                {prod.eligibilityStatus}
+              </span>
             </div>
+            <p className="text-xs text-stone-500 mt-0.5">
+              {prod.institution} &bull; {prod.approvalSpeed}
+            </p>
           </div>
+
+          <div className="text-right">
+            <span className="text-xs text-stone-500 block">Annual Interest</span>
+            <span className="text-lg font-black text-emerald-900 font-serif">
+              {prod.interestRateAnnual}% p.a.
+            </span>
+          </div>
+        </div>
+
+        <div className="flex flex-wrap gap-2 pt-2 border-t border-stone-100 text-xs text-stone-600">
+          {prod.features?.map((feat, idx) => (
+            <span key={idx} className="flex items-center gap-1 bg-white px-2 py-1 rounded-md border border-stone-100">
+              {feat}
+            </span>
+          ))}
+        </div>
+      </div>
+    );
+  })}
+</div>
 
           {/* Interactive Loan EMI Calculator & Instant Application */}
           <div className="bg-white p-6 rounded-2xl border border-stone-200 shadow-2xs space-y-4">
