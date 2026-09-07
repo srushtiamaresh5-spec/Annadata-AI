@@ -570,6 +570,6 @@ const totalExpense = (entries || [])
         </div>
       )}
 
-    </div>
-  );
+    
+
 };
